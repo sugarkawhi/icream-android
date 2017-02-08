@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import me.sugarkawhi.youqu.R;
 import me.sugarkawhi.youqu.databinding.ActivityMainBinding;
 import me.sugarkawhi.youqu.ui.joker.JokerFragment;
-import me.sugarkawhi.youqu.ui.pic.fragment.PicFragment;
+import me.sugarkawhi.youqu.ui.pic.fragment.GankFragment;
 import me.sugarkawhi.youqu.ui.video.fragment.VideoFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG_JOKER = "TAG_JOKER";
     private static final String TAG_SECURITY = "TAG_SECURITY";
 
-    private PicFragment picFragment;
+    private GankFragment picFragment;
     private VideoFragment videoFragment;
     private JokerFragment jokerFragment;
 
@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fm = getSupportFragmentManager();
 
         if (savedInstanceState == null) {
-            picFragment = PicFragment.newInstance();
+            picFragment = GankFragment.newInstance();
             videoFragment = VideoFragment.newInstance();
             jokerFragment = JokerFragment.newInstance();
         } else {
-            picFragment = (PicFragment) fm.findFragmentByTag(TAG_PIC);
+            picFragment = (GankFragment) fm.findFragmentByTag(TAG_PIC);
             if (picFragment == null) {
-                picFragment = PicFragment.newInstance();
+                picFragment = GankFragment.newInstance();
             }
             videoFragment = (VideoFragment) fm.findFragmentByTag(TAG_VIDEO);
             if (videoFragment == null) {

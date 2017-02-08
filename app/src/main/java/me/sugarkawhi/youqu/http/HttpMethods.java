@@ -15,6 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpMethods {
 
+    private final static String API_GANKIO = "http://gank.io/api/";
+
     private static final int DEFAULT_TIMEOUT = 5;
 
     private Retrofit retrofit;
@@ -30,7 +32,7 @@ public class HttpMethods {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(API_GANKIO)
                 .build();
     }
 

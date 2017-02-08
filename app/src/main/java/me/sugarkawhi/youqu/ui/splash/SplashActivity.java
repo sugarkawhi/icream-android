@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.concurrent.TimeUnit;
 
 import me.sugarkawhi.youqu.R;
-import me.sugarkawhi.youqu.ui.base.BaseActivity;
+import me.sugarkawhi.youqu.base.BaseActivity;
 import me.sugarkawhi.youqu.ui.main.MainActivity;
 import rx.Observable;
 import rx.Subscription;

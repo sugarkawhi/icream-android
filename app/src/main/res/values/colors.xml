@@ -4,5 +4,10 @@
     <color name="colorPrimaryDark">#D6B0F7</color>
     <color name="colorAccent">#D6B0F7</color>
 
+    <!--字体未选中颜色-->
     <color name="colorUnselected">#CDCDCD</color>
+    <!--页面背景的颜色-->
+    <color name="colorPageBg">#f2f4f5</color>
+    <!--tab标签栏文字的颜色-->
+    <color name="colorTabText">#585858</color>
 </resources>
