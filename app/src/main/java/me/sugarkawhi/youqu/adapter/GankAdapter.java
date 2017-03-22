@@ -30,7 +30,7 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
         this.context = context;
     }
 
-    public void addAll(List<GankIoDataBean.ResultBean> list){
+    public void addAll(List<GankIoDataBean.ResultBean> list) {
         mlist.addAll(list);
         notifyDataSetChanged();
     }
@@ -46,7 +46,7 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
     public void onBindViewHolder(GankAdapter.GankHolder holder, int position) {
         Glide.with(context)
                 .load(mlist.get(position).getUrl())
-                .centerCrop()
+                .crossFade(200)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.iv);
     }
@@ -56,7 +56,7 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
         return mlist.size();
     }
 
-    protected static class GankHolder extends RecyclerView.ViewHolder {
+    static class GankHolder extends RecyclerView.ViewHolder {
         ImageView iv;
 
         public GankHolder(View itemView) {

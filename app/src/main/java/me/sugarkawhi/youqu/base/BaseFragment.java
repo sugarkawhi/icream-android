@@ -23,7 +23,6 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class BaseFragment extends Fragment {
     public CompositeSubscription mCompositeSubscription;
 
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -63,12 +62,6 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
-    /**
-     * 设置布局
-     *
-     * @return 布局资源的id
-     */
-    public abstract int setContent();
 
     public void addSubscription(Subscription subscription) {
         if (mCompositeSubscription == null)

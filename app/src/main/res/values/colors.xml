@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--D6B0F7-->
     <color name="colorPrimary">#D6B0F7</color>
-    <color name="colorPrimaryDark">#D6B0F7</color>
-    <color name="colorAccent">#D6B0F7</color>
+    <color name="colorPrimaryDark">#F9B0F7</color>
+    <color name="colorAccent">#F6F0FF</color>
+
+    <!--LightPink	浅粉色	#FFB6C1-->
+    <color name="LightPink">#FFB6C1</color>
+    <!--Violet	紫罗兰	#EE82EE-->
+    <color name="Violet">#EE82EE</color>
+    <!--Indigo	靛青	   #4B0082-->
+    <color name="Indigo">#4B0082</color>
+    <!--Navy	海军蓝	#000080-->
+    <color name="Navy">#000080</color>
 
     <!--字体未选中颜色-->
     <color name="colorUnselected">#CDCDCD</color>
