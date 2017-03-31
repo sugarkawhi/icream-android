@@ -2,14 +2,14 @@ package me.sugarkawhi.youqu.feature.main.gank;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import me.sugarkawhi.youqu.R;
-import me.sugarkawhi.youqu.adapter.GankAdapter;
 import me.sugarkawhi.youqu.base.BaseFragment;
 import me.sugarkawhi.youqu.bean.GankIoDataBean;
 import me.sugarkawhi.youqu.http.HttpMethods;
@@ -34,6 +34,11 @@ public class GankFragment extends BaseFragment {
     private GankAdapter mAdapter;
 
 
+    //正在加载
+    private boolean isloading;
+    //
+    private int curPage = 1;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,25 +50,53 @@ public class GankFragment extends BaseFragment {
     private void initRecyclerView(View view) {
         mAdapter = new GankAdapter(getContext());
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
         loadData();
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                int[] arr = layoutManager.findLastCompletelyVisibleItemPositions(null);
+
+                Log.e("GANK", "===========START=============");
+                for (int i : arr
+                        ) {
+                    Log.e("GANK", "i " + i);
+
+                }
+                Log.e("GANK", "============END==============");
+
+                if (arr.length > 0 &&
+                        arr[1] > mAdapter.getItemCount() - 6
+                        && !isloading) {
+                    loadData();
+                }
+
+            }
+        });
     }
 
     protected void loadData() {
+        isloading = true;
+        String url = "http://gank.io/api/data/福利/10/" + curPage;
+        Log.e("GankFragment", "url > " + url);
         Subscription subscription = HttpMethods.create(HttpRetrofitClient.class)
-                .getGankIoData("http://gank.io/api/data/福利/10/1")
+                .getGankIoData(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<GankIoDataBean>() {
                     @Override
                     public void onCompleted() {
-
+                        isloading = false;
+                        curPage++;
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
+                        isloading = false;
                     }
 
                     @Override
@@ -73,5 +106,6 @@ public class GankFragment extends BaseFragment {
                 });
         addSubscription(subscription);
     }
+
 
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--D6B0F7-->
-    <color name="colorPrimary">#D6B0F7</color>
-    <color name="colorPrimaryDark">#F9B0F7</color>
-    <color name="colorAccent">#F6F0FF</color>
+    <color name="colorPrimary">#34495E</color>
+    <color name="colorPrimaryDark">#34495E</color>
+    <color name="colorAccent">#34495E</color>
 
     <!--LightPink	浅粉色	#FFB6C1-->
     <color name="LightPink">#FFB6C1</color>

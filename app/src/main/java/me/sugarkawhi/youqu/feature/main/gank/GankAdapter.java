@@ -1,10 +1,11 @@
-package me.sugarkawhi.youqu.adapter;
+package me.sugarkawhi.youqu.feature.main.gank;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -44,11 +45,26 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
 
     @Override
     public void onBindViewHolder(GankAdapter.GankHolder holder, int position) {
+
+        FrameLayout.LayoutParams params;
+        if (position == 1) {
+            params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    600);
+        } else {
+            params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    650);
+        }
+        holder.iv.setLayoutParams(params);
+
+
         Glide.with(context)
                 .load(mlist.get(position).getUrl())
                 .crossFade(200)
+                .centerCrop()
+//                .placeholder(R.drawable.ic_default_pic)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.iv);
+
     }
 
     @Override

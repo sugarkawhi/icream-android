@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Log.e("MainActivity", "curr position > " + currentPosition);
+//        Log.e("MainActivity", "curr position > " + currentPosition);
         switch (v.getId()) {
             case R.id.iv_pic:
                 if (currentPosition != 0) {
