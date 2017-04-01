@@ -49,7 +49,7 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        mWhale = (ImageView) findViewById(R.id.iv);
+        mWhale = (ImageView) findViewById(R.id.iv_whale);
         mWave = (WaveView) findViewById(R.id.waveView);
         mCloud = (ImageView) findViewById(R.id.iv_cloud);
         mSmallCloud = (ImageView) findViewById(R.id.iv_small_cloud);
