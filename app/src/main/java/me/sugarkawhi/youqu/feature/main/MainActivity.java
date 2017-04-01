@@ -3,10 +3,10 @@ package me.sugarkawhi.youqu.feature.main;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mIvVideo.setOnClickListener(this);
         mIvOctopus.setOnClickListener(this);
         mIvSecurity.setOnClickListener(this);
+
+        mBinding.toolbar.setTitleTextColor(Color.WHITE);
     }
 
     private void initFragment(Bundle savedInstanceState) {
