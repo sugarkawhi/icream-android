@@ -3,14 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="me.sugarkawhi.youqu.feature.splash.SplashActivity">
+
+
+    <ImageView
+        android:id="@+id/iv_moon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/ic_moon" />
+
+    <ImageView
+        android:id="@+id/iv_small_cloud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/ic_cloud" />
+
+    <ImageView
+        android:id="@+id/iv_cloud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/ic_cloud_small" />
 
     <ImageView
         android:id="@+id/iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:onClick="onClickWhale"
+        android:layout_marginBottom="45dp"
         android:src="@drawable/ic_whale" />
+
+
+    <me.sugarkawhi.youqu.widget.WaveView
+        android:id="@+id/waveView"
+        android:layout_width="match_parent"
+        android:onClick="onWhaleClick"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
 
 </FrameLayout>

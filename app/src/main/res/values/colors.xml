@@ -10,12 +10,10 @@
     <!--Violet	紫罗兰	#EE82EE-->
     <color name="Violet">#EE82EE</color>
     <!--Indigo	靛青	   #4B0082-->
-    <color name="Indigo">#4B0082</color>
     <!--Navy	海军蓝	#000080-->
     <color name="Navy">#000080</color>
 
     <!--字体未选中颜色-->
-    <color name="colorUnselected">#CDCDCD</color>
     <!--页面背景的颜色-->
     <color name="colorPageBg">#f2f4f5</color>
     <!--tab标签栏文字的颜色-->
