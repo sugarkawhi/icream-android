@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView mIvOctopus;
     private ImageView mIvSecurity;
 
+    private static final String[] titles = new String[]{"Gank", "Album", "Joke", "Mine"};
+
     private static final String TAG_PIC = "TAG_PIC";
     private static final String TAG_VIDEO = "TAG_VIDEO";
     private static final String TAG_JOKER = "TAG_JOKER";
@@ -151,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .hide(videoFragment)
                         .hide(jokerFragment)
                         .commit();
+                mBinding.toolbar.setTitle(titles[0]);
                 break;
             case 1:
                 fm.beginTransaction()
@@ -158,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .show(videoFragment)
                         .hide(jokerFragment)
                         .commit();
+                mBinding.toolbar.setTitle(titles[1]);
                 break;
             case 2:
                 fm.beginTransaction()
@@ -165,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .hide(videoFragment)
                         .show(jokerFragment)
                         .commit();
+                mBinding.toolbar.setTitle(titles[2]);
                 break;
         }
     }
