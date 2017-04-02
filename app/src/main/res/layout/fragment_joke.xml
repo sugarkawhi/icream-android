@@ -1,43 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/list_view_space_bottom"
+    android:paddingEnd="@dimen/list_view_space_right"
+    android:paddingStart="@dimen/list_view_space_left"
+    android:paddingTop="@dimen/list_view_space_top"
+    android:scrollbarSize="2dp"
+    android:scrollbarStyle="outsideOverlay"
+    android:scrollbars="vertical" />
 
-    <me.sugarkawhi.youqu.widget.CirclePercentView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:arcColor="@color/Violet"
-        app:arcWidth="10dp"
-        app:circleColor="@color/LightPink"
-        app:percent="48"
-        app:percentTextColor="@color/colorPageBg"
-        app:percentTextSize="13sp" />
-
-    <me.sugarkawhi.youqu.widget.CirclePercentView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        app:arcColor="@color/Navy"
-        app:arcWidth="3dp"
-        app:circleColor="@color/colorAccent"
-        app:percent="20"
-        app:percentTextColor="@color/Navy"
-        app:percentTextSize="10sp"
-        app:radius="20dp" />
-
-    <me.sugarkawhi.youqu.widget.CirclePercentView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:arcColor="@color/colorPrimaryDark"
-        app:arcWidth="10dp"
-        app:circleColor="@color/colorAccent"
-        app:percent="66"
-        app:percentTextColor="@color/colorPrimaryDark"
-        app:percentTextSize="13sp" />
-
-</LinearLayout>
 

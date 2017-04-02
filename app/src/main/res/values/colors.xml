@@ -4,6 +4,10 @@
     <color name="colorPrimary">#34495E</color>
     <color name="colorPrimaryDark">#34495E</color>
     <color name="colorAccent">#34495E</color>
+    <color name="windowBackground">#f1f1f1</color>
+
+    <color name="white">#ffffff</color>
+    <color name="text_color">#262838</color>
 
     <!--LightPink	浅粉色	#FFB6C1-->
     <color name="LightPink">#FFB6C1</color>
