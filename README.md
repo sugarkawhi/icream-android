@@ -12,12 +12,12 @@
 + AnimatorSet
 + 自定义View WaveView 贝塞尔曲线的使用
 
-![](http://olpu32iyy.bkt.clouddn.com/ezgif-1-253102720d.gif)
+![](http://olpu32iyy.bkt.clouddn.com/17-4-5/8632854-file_1491373765743_12061.gif)
 
-
-##### 说明
-
+##### 感谢
 + icon 出处[阿里ICON](http://www.iconfont.cn/plus)
++ 首页图片资源来自 [gank.io](http://gank.io/)
++ 段子接口来自 [聚合数据](https://www.juhe.cn/)
 
 ##### 
 
