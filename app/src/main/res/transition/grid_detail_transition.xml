@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2014 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2014 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,18 +14,19 @@
      limitations under the License.
 -->
 
-<resources>
+<!--
+    The transitions which us used for the entrance and exit of shared elements. Here we declare
+    two different transitions which are targeting specific views.
+-->
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.Sample" parent="Theme.Base">
-        <!-- Set the transitions which are used for the entrance and exit of shared elements -->
-        <item name="android:windowSharedElementEnterTransition">
-            @transition/grid_detail_transition
-        </item>
-        <item name="android:windowSharedElementExitTransition">
-            @transition/grid_detail_transition
-        </item>
+    <!-- changeBounds is used for the TextViews which are shared -->
+    <changeBounds />
+
+    <!-- changeImageTransform is used for the ImageViews which are shared -->
+    <changeImageTransform />
 
 
-    </style>
+</transitionSet>
 
-</resources>
+

@@ -1,6 +1,12 @@
 package me.sugarkawhi.youqu.feature.main.gank;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,16 +50,28 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
     }
 
     @Override
-    public void onBindViewHolder(GankAdapter.GankHolder holder, int position) {
+    public void onBindViewHolder(final GankAdapter.GankHolder holder, int position) {
 
+        final String url = mlist.get(position).getUrl();
 
         Glide.with(context)
-                .load(mlist.get(position).getUrl())
+                .load(url)
                 .crossFade(200)
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.iv);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra(DetailActivity.IMAGE_URL, url);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        (Activity) context,
+                        new Pair<View, String>(v, DetailActivity.VIEW_IMAGE));
+                ActivityCompat.startActivity(context, intent, activityOptionsCompat.toBundle());
+            }
+        });
     }
 
     @Override
