@@ -1,4 +1,4 @@
-# 
+# ICream+
 
 ##### 摘要
 
@@ -7,19 +7,25 @@
 
 ##### 进度
 
-##### 2017年04月01日 
+###### 2017/04/01
 + 属性动画 ObjectAnimator
 + AnimatorSet
 + 自定义View WaveView 贝塞尔曲线的使用
 
-![](http://olpu32iyy.bkt.clouddn.com/17-4-5/8632854-file_1491373765743_12061.gif)
+![Splsh](http://olpu32iyy.bkt.clouddn.com/17-4-5/80326214-file_1491404737372_113e.gif)
+
+###### 2017/04/04
+
++ 福利图页 (版本:Android Lollipop上) 共享元素动画
+
+![共享元素](http://olpu32iyy.bkt.clouddn.com/17-4-5/26901831-file_1491406902401_9036.gif)
+
 
 ##### 感谢
-+ icon 出处[阿里ICON](http://www.iconfont.cn/plus)
-+ 首页图片资源来自 [gank.io](http://gank.io/)
-+ 段子接口来自 [聚合数据](https://www.juhe.cn/)
++ Icon/drawable res from [阿里ICON](http://www.iconfont.cn/plus)
++ 首页福利接口 from [gank.io](http://gank.io/)
++ 段子接口 from [聚合数据](https://www.juhe.cn/)
 
-##### 
 
 
 

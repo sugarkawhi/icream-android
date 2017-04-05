@@ -23,7 +23,7 @@
         <item name="android:windowSharedElementExitTransition">
             @transition/grid_detail_transition
         </item>
-
+        <item name="android:windowContentTransitions">true</item>
 
     </style>
 

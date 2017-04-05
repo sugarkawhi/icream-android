@@ -1,6 +1,5 @@
 package me.sugarkawhi.youqu.feature.main.gank;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,7 +26,7 @@ public class DetailActivity extends AppCompatActivity {
     private String mImgUrl;
 
     public static final String IMAGE_URL = "IMAGE_URL";
-    public static final String VIEW_IMAGE = "detail:image";
+    public static final String DETAIL_TRANSLATION_NAME = "detail:image";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class DetailActivity extends AppCompatActivity {
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mImgUrl = getIntent().getStringExtra(IMAGE_URL);
 
-        ViewCompat.setTransitionName(mIv, VIEW_IMAGE);
+        ViewCompat.setTransitionName(mIv, DETAIL_TRANSLATION_NAME);
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP && addTranslationListener()) {
             loadThumbnail();
