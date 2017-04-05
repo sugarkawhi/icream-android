@@ -46,22 +46,11 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
     @Override
     public void onBindViewHolder(GankAdapter.GankHolder holder, int position) {
 
-        FrameLayout.LayoutParams params;
-        if (position == 1) {
-            params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    600);
-        } else {
-            params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    650);
-        }
-        holder.iv.setLayoutParams(params);
-
 
         Glide.with(context)
                 .load(mlist.get(position).getUrl())
                 .crossFade(200)
                 .centerCrop()
-//                .placeholder(R.drawable.ic_default_pic)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.iv);
 

@@ -2,6 +2,7 @@ package me.sugarkawhi.youqu.feature.main.gank;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -50,7 +51,7 @@ public class GankFragment extends BaseFragment {
     private void initRecyclerView(View view) {
         mAdapter = new GankAdapter(getContext());
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        final GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
         loadData();
@@ -58,19 +59,10 @@ public class GankFragment extends BaseFragment {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                int[] arr = layoutManager.findLastCompletelyVisibleItemPositions(null);
+                int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
 
-                Log.e("GANK", "===========START=============");
-                for (int i : arr
-                        ) {
-                    Log.e("GANK", "i " + i);
 
-                }
-                Log.e("GANK", "============END==============");
-
-                if (arr.length > 0 &&
-                        arr[1] > mAdapter.getItemCount() - 6
-                        && !isloading) {
+                if (lastVisibleItemPosition > mAdapter.getItemCount() / 2 - 3 && !isloading) {
                     loadData();
                 }
 
