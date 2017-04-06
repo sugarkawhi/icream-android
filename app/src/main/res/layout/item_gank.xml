@@ -8,6 +8,7 @@
         android:id="@+id/iv_pic"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="fitXY"
+        android:transitionName="@string/transition_gank_image" />
 
 </FrameLayout>

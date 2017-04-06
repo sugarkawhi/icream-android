@@ -15,6 +15,8 @@ import me.sugarkawhi.youqu.base.BaseActivity;
 import me.sugarkawhi.youqu.feature.main.MainActivity;
 import me.sugarkawhi.youqu.listener.OnAnimatorListener;
 import me.sugarkawhi.youqu.widget.WaveView;
+import rx.Observable;
+import rx.Subscription;
 
 /**
  * create by sk on 17/4/1
@@ -192,5 +194,7 @@ public class SplashActivity extends BaseActivity {
 
     public void onWhaleClick(View view) {
         MainActivity.start(this);
+        finish();
     }
+
 }

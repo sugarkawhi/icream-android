@@ -1,10 +1,14 @@
 package me.sugarkawhi.youqu.feature.main.gank;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +53,7 @@ public class GankFragment extends BaseFragment {
     }
 
     private void initRecyclerView(View view) {
-        mAdapter = new GankAdapter(getContext());
+        mAdapter = new GankAdapter(getActivity());
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         final GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -98,6 +102,5 @@ public class GankFragment extends BaseFragment {
                 });
         addSubscription(subscription);
     }
-
 
 }

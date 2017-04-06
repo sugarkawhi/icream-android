@@ -1,19 +1,23 @@
 package me.sugarkawhi.youqu.feature.main.gank;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.ViewCompat;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.Transition;
-import android.view.View;
+import android.transition.ArcMotion;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
 import me.sugarkawhi.youqu.R;
+import me.sugarkawhi.youqu.widget.CustomChangeBounds;
 
 /**
  * Created by sugarkawhi on 2017/4/5.
@@ -26,7 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     private String mImgUrl;
 
     public static final String IMAGE_URL = "IMAGE_URL";
-    public static final String DETAIL_TRANSLATION_NAME = "detail:image";
+    public static final String TRANSITION_GANK_IMAGE = "transition_gank_image";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,22 +40,7 @@ public class DetailActivity extends AppCompatActivity {
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mImgUrl = getIntent().getStringExtra(IMAGE_URL);
 
-        ViewCompat.setTransitionName(mIv, DETAIL_TRANSLATION_NAME);
-
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP && addTranslationListener()) {
-            loadThumbnail();
-        } else {
-            loadFullSizeImage();
-        }
-    }
-
-    private void loadThumbnail() {
-        Glide.with(this)
-                .load(mImgUrl)
-                .dontAnimate()
-                .centerCrop()
-                .thumbnail(0.5f)
-                .into(mIv);
+        setMotion(mIv, true);
     }
 
     private void loadFullSizeImage() {
@@ -62,39 +51,45 @@ public class DetailActivity extends AppCompatActivity {
                 .into(mIv);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private boolean addTranslationListener() {
-        Transition transition = getWindow().getSharedElementEnterTransition();
-        if (transition == null)
-            return false;
-        transition.addListener(new Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(Transition transition) {
 
-            }
+    /**
+     * @param activity  activity
+     * @param url       url
+     * @param imageView imageView
+     */
+    public static void start(Activity activity, String url, ImageView imageView) {
+        Intent intent = new Intent(activity, DetailActivity.class);
+        intent.putExtra(IMAGE_URL, url);
+        ActivityOptionsCompat options =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        activity,
+                        imageView,
+                        TRANSITION_GANK_IMAGE);//与xml文件对应
+        ActivityCompat.startActivity(activity, intent, options.toBundle());
+    }
 
-            @Override
-            public void onTransitionEnd(Transition transition) {
-                loadFullSizeImage();
-                mFab.setVisibility(View.VISIBLE);
-                transition.removeListener(this);
-            }
+    protected void setMotion(ImageView imageView, boolean isShow) {
+        if (!isShow) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //定义ArcMotion
+            ArcMotion arcMotion = new ArcMotion();
+            arcMotion.setMinimumHorizontalAngle(50f);
+            arcMotion.setMinimumVerticalAngle(50f);
+            //插值器，控制速度
+            Interpolator interpolator = AnimationUtils.loadInterpolator(this, android.R.interpolator.fast_out_slow_in);
 
-            @Override
-            public void onTransitionCancel(Transition transition) {
-                transition.removeListener(this);
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-
-            }
-        });
-        return true;
+            //实例化自定义的ChangeBounds
+            CustomChangeBounds changeBounds = new CustomChangeBounds();
+            changeBounds.setPathMotion(arcMotion);
+            changeBounds.setInterpolator(interpolator);
+            changeBounds.addTarget(imageView);
+            //将切换动画应用到当前的Activity的进入和返回
+            getWindow().setSharedElementEnterTransition(changeBounds);
+            getWindow().setSharedElementReturnTransition(changeBounds);
+        } else {
+            loadFullSizeImage();
+        }
     }
 }

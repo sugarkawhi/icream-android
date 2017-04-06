@@ -3,11 +3,15 @@ package me.sugarkawhi.youqu.feature.main.gank;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -26,11 +30,11 @@ import me.sugarkawhi.youqu.bean.GankIoDataBean;
 
 public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
 
-    private Context context;
+    private Activity activity;
     private List<GankIoDataBean.ResultBean> mlist = new ArrayList<>();
 
-    public GankAdapter(Context context) {
-        this.context = context;
+    public GankAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     public void addAll(List<GankIoDataBean.ResultBean> list) {
@@ -40,7 +44,7 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
 
     @Override
     public GankAdapter.GankHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context)
+        View view = LayoutInflater.from(activity)
                 .inflate(R.layout.item_gank, parent, false);
         return new GankHolder(view);
     }
@@ -50,7 +54,7 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
 
         final String url = mlist.get(position).getUrl();
 
-        Glide.with(context)
+        Glide.with(activity)
                 .load(url)
                 .crossFade(200)
                 .centerCrop()
@@ -60,13 +64,7 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra(DetailActivity.IMAGE_URL, url);
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        (Activity) context,
-                        holder.iv,
-                        DetailActivity.DETAIL_TRANSLATION_NAME);
-                context.startActivity(intent, activityOptionsCompat.toBundle());
+                DetailActivity.start(activity, url, holder.iv);
             }
         });
     }
@@ -84,4 +82,5 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
             iv = (ImageView) itemView.findViewById(R.id.iv_pic);
         }
     }
+
 }
