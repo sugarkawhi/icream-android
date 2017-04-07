@@ -38,8 +38,13 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
     }
 
     public void addAll(List<GankIoDataBean.ResultBean> list) {
+        if (list == null || list.isEmpty())
+            return;
+        int originalSize = mlist.size();
         mlist.addAll(list);
-        notifyDataSetChanged();
+        int nowSize = mlist.size();
+        int count = list.size();
+        notifyItemRangeInserted(nowSize - originalSize, count);
     }
 
     @Override
@@ -64,7 +69,7 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankHolder> {
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetailActivity.start(activity, url, holder.iv);
+                DetailActivity.start(activity, url);
             }
         });
     }

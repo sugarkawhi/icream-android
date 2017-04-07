@@ -15,6 +15,7 @@ import me.sugarkawhi.youqu.R;
 import me.sugarkawhi.youqu.databinding.ActivityMainBinding;
 import me.sugarkawhi.youqu.feature.main.gank.GankFragment;
 import me.sugarkawhi.youqu.feature.main.joke.JokerFragment;
+import me.sugarkawhi.youqu.feature.main.mine.MineFragment;
 import me.sugarkawhi.youqu.feature.main.video.VideoFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,22 +25,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ImageView mIvPic;
     private ImageView mIvVideo;
-    private ImageView mIvOctopus;
-    private ImageView mIvSecurity;
+    private ImageView mIvJoke;
+    private ImageView mIvMine;
 
     private static final String[] titles = new String[]{"Gank", "Album", "Joke", "Mine"};
 
     private static final String TAG_PIC = "TAG_PIC";
     private static final String TAG_VIDEO = "TAG_VIDEO";
     private static final String TAG_JOKER = "TAG_JOKER";
-    private static final String TAG_SECURITY = "TAG_SECURITY";
+    private static final String TAG_MINE = "TAG_MINE";
 
     private GankFragment gankFragment;
     private VideoFragment videoFragment;
     private JokerFragment jokerFragment;
+    private MineFragment mineFragment;
 
     private FragmentManager fm;
-    private int currentPosition = 0;
+    private int currentPosition = -1;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -57,12 +59,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initId() {
         mIvPic = mBinding.ivPic;
         mIvVideo = mBinding.ivVideo;
-        mIvOctopus = mBinding.ivOctopus;
-        mIvSecurity = mBinding.ivSecurity;
+        mIvJoke = mBinding.ivJoke;
+        mIvMine = mBinding.ivMine;
         mIvPic.setOnClickListener(this);
         mIvVideo.setOnClickListener(this);
-        mIvOctopus.setOnClickListener(this);
-        mIvSecurity.setOnClickListener(this);
+        mIvJoke.setOnClickListener(this);
+        mIvMine.setOnClickListener(this);
 
         mBinding.toolbar.setTitleTextColor(Color.WHITE);
     }
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             gankFragment = GankFragment.newInstance();
             videoFragment = VideoFragment.newInstance();
             jokerFragment = JokerFragment.newInstance();
+            mineFragment = MineFragment.newInstance();
+
         } else {
             gankFragment = (GankFragment) fm.findFragmentByTag(TAG_PIC);
             if (gankFragment == null) {
@@ -87,18 +91,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (jokerFragment == null) {
                 jokerFragment = JokerFragment.newInstance();
             }
+
+            mineFragment = (MineFragment) fm.findFragmentByTag(TAG_MINE);
+            if (mineFragment == null) {
+                mineFragment = MineFragment.newInstance();
+            }
         }
 
         fm.beginTransaction()
                 .add(R.id.container, gankFragment)
                 .add(R.id.container, videoFragment)
                 .add(R.id.container, jokerFragment)
+                .add(R.id.container, mineFragment)
                 .commit();
+
         switchFragment(0);
-        mIvPic.setEnabled(false);
-        mIvVideo.setEnabled(true);
-        mIvOctopus.setEnabled(true);
-        currentPosition = 0;
     }
 
 
@@ -107,34 +114,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        Log.e("MainActivity", "curr position > " + currentPosition);
         switch (v.getId()) {
             case R.id.iv_pic:
-                if (currentPosition != 0) {
-                    mIvPic.setEnabled(false);
-                    mIvVideo.setEnabled(true);
-                    mIvOctopus.setEnabled(true);
-                    switchFragment(0);
-                    currentPosition = 0;
-                }
+                switchFragment(0);
                 break;
             case R.id.iv_video:
-                if (currentPosition != 1) {
-                    mIvVideo.setEnabled(false);
-                    mIvPic.setEnabled(true);
-                    mIvOctopus.setEnabled(true);
-                    switchFragment(1);
-                    currentPosition = 1;
-                }
+                switchFragment(1);
                 break;
-            case R.id.iv_octopus:
-                if (currentPosition != 2) {
-                    mIvOctopus.setEnabled(false);
-                    mIvPic.setEnabled(true);
-                    mIvVideo.setEnabled(true);
-                    switchFragment(2);
-                    currentPosition = 2;
-                }
+            case R.id.iv_joke:
+                switchFragment(2);
                 break;
-            case R.id.iv_security:
-
+            case R.id.iv_mine:
+                switchFragment(3);
                 break;
         }
     }
@@ -148,29 +137,70 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void switchFragment(int position) {
         switch (position) {
             case 0:
+                if (currentPosition == 0)
+                    break;
+                currentPosition = 0;
                 fm.beginTransaction()
                         .show(gankFragment)
                         .hide(videoFragment)
                         .hide(jokerFragment)
+                        .hide(mineFragment)
                         .commit();
                 mBinding.toolbar.setTitle(titles[0]);
+                mIvPic.setSelected(true);
+                mIvVideo.setSelected(false);
+                mIvJoke.setSelected(false);
+                mIvMine.setSelected(false);
                 break;
             case 1:
+                if (currentPosition == 1)
+                    break;
+                currentPosition = 1;
                 fm.beginTransaction()
                         .hide(gankFragment)
                         .show(videoFragment)
                         .hide(jokerFragment)
+                        .hide(mineFragment)
                         .commit();
                 mBinding.toolbar.setTitle(titles[1]);
+                mIvPic.setSelected(false);
+                mIvVideo.setSelected(true);
+                mIvJoke.setSelected(false);
+                mIvMine.setSelected(false);
                 break;
             case 2:
+                if (currentPosition == 2)
+                    break;
+                currentPosition = 2;
                 fm.beginTransaction()
                         .hide(gankFragment)
                         .hide(videoFragment)
+                        .hide(mineFragment)
                         .show(jokerFragment)
                         .commit();
                 mBinding.toolbar.setTitle(titles[2]);
+                mIvPic.setSelected(false);
+                mIvVideo.setSelected(false);
+                mIvJoke.setSelected(true);
+                mIvMine.setSelected(false);
                 break;
+            case 3:
+                if (currentPosition == 3)
+                    break;
+                currentPosition = 3;
+                fm.beginTransaction()
+                        .hide(gankFragment)
+                        .hide(videoFragment)
+                        .hide(jokerFragment)
+                        .show(mineFragment)
+                        .commit();
+                mBinding.toolbar.setTitle(titles[3]);
+                mIvPic.setSelected(false);
+                mIvVideo.setSelected(false);
+                mIvJoke.setSelected(false);
+                mIvMine.setSelected(true);
+                break;
+
         }
     }
 }

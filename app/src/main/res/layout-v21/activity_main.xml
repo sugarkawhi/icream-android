@@ -55,7 +55,7 @@
                 android:src="@drawable/tab_bar_album" />
 
             <ImageView
-                android:id="@+id/iv_octopus"
+                android:id="@+id/iv_joke"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -65,7 +65,7 @@
                 android:src="@drawable/tab_bar_joke" />
 
             <ImageView
-                android:id="@+id/iv_security"
+                android:id="@+id/iv_mine"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

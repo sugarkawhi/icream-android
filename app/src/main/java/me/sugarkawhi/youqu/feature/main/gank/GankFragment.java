@@ -65,8 +65,7 @@ public class GankFragment extends BaseFragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
 
-
-                if (lastVisibleItemPosition > mAdapter.getItemCount() / 2 - 3 && !isloading) {
+                if (lastVisibleItemPosition > mAdapter.getItemCount() / 2 - 4 && !isloading) {
                     loadData();
                 }
 
@@ -75,6 +74,8 @@ public class GankFragment extends BaseFragment {
     }
 
     protected void loadData() {
+        if (curPage > 10)
+            return;
         isloading = true;
         String url = "http://gank.io/api/data/福利/10/" + curPage;
         Log.e("GankFragment", "url > " + url);
